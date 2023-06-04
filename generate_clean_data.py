@@ -41,10 +41,10 @@ cur_snr = 100
 data_hyp ={"J": J, "N": N, "K": K, "C": C, "s": s, "x_mean": x_mean,
          "x_std": x_std, "SNR": cur_snr, "device": device}
 dataset = simdata.SimulatedDataset1D(data_hyp)
-y = dataset.y_noise.clone().detach().cpu().numpy()
-y_true = dataset.y.clone().detach().cpu().numpy()
-data_mat = {'data': y, 'labels': y_true}
-spio.savemat(f"Simulated_Data/CRASE/CRsAE1D_dataset_SNR_{cur_snr}.mat", data_mat)
+x = dataset.x.clone().detach().cpu().numpy()
+y = dataset.y.clone().detach().cpu().numpy()
+data_mat = {'y': y, 'x': x}
+spio.savemat(f"Simulated_Data/CRASE/CRASE_dataset_SNR_{cur_snr}.mat", data_mat)
 
 
 # generate CNMF
@@ -62,6 +62,6 @@ data_hyp ={"g": g, "T": T, "framerate": framerate, "firerate": firerate, "b": b,
          "N": N,"x_mean":x_mean,"SNR": cur_snr, "device": device}
 dataset = simdata.SimulatedCNMFDataset1D(data_hyp)
 y = dataset.Y.clone().detach().cpu().numpy()
-y_true = dataset.truth.clone().detach().cpu().numpy()
-data_mat = {'data': y, 'labels': y_true}
+x = dataset.truth.clone().detach().cpu().numpy()
+data_mat = {'y': y, 'x': x}
 spio.savemat(f"Simulated_Data/CNMF/CNMF_SNR_{cur_snr}.mat", data_mat)
