@@ -10,4 +10,4 @@ a. Simulated data
 
 b. Ca imaging data - 2 photon imaging 
 
-2. Spike Detection with Behavior Modeling
+# 2. Spike Detection with Behavior Modeling
