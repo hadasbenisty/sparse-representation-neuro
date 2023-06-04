@@ -94,7 +94,12 @@ if ~optimize_b   %% don't optimize the baseline b
         % update g
         if and(optimize_g, ~g_converged);
             g0 = g;
+            try
             [solution, active_set, g, spks] = update_g(y, g, spks,smin);
+            catch
+                warning('Did not converge but we got an error');
+                g_converged = true;
+            end
             if abs(g-g0)/g0 < 1e-3 % g is converged
                 g_converged = true;
             end
