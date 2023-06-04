@@ -22,6 +22,18 @@ class LoadDataset(Dataset):
         return self.y[idx]
 
 
+class LoadDatasetSimulated(Dataset):
+    def __init__(self, path, device):
+        dataset = scipy.io.loadmat(path)
+        self.y = dataset['data']
+        self.y_true = dataset['labels']
+
+    def __len__(self):
+        return len(self.y)
+
+    def __getitem__(self, idx):
+        return self.y[idx], self.y_true[idx]
+
 class SimulatedDataset1D(Dataset):
     def __init__(self, hyp):
 
