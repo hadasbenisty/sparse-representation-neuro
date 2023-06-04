@@ -120,7 +120,7 @@ def vis_miss_false(missed_per_list, false_per_list):
 
 
 def load_filters(device):
-    return torch.load("data/h_sim_2.pt", map_location=torch.device('cpu')).to(device)
+    return torch.load("h_sim_2.pt", map_location=torch.device('cpu')).to(device)
 
 
 def load_h_init_harris(device):
