@@ -22,12 +22,14 @@ if __name__ == '__main__':
     lr = float(sys.argv[7])  # learning rate
     batch_size = int(sys.argv[8])  # batch size
     num_epochs = int(sys.argv[9])  # epocs
+    inputfile = sys.argv[10]
+    cleanfile = sys.argv[11]
 
     # mkdir, set output file, check if it exists
     outputfolder = 'results/' + input_dir + '/'
     if not os.path.exists(outputfolder):
         os.mkdir(outputfolder)
-    outputfile = outputfolder + "results_CRsAE1D_T" + str(T) + "_L" + str(L) + "_C" + str(C) + "_K" + str(
+    outputfile = outputfolder + "results_" + inputfile[:-4] + "_T" + str(T) + "_L" + str(L) + "_C" + str(C) + "_K" + str(
         K) + "_lam" + str(lam) + "_lr" + str(lr) + "_bs" + str(batch_size) + "_ep" + str(num_epochs)
 
     if not os.path.exists(outputfile + ".mat"):
@@ -43,10 +45,11 @@ if __name__ == '__main__':
                    }
 
         net = Model.CRsAE1D(net_hyp)
-
+        net = net.float()
         # training parameters
         train_hyp = {"batch_size": batch_size, "num_epochs": num_epochs, "lr": lr, "shuffle": True}
-        dataset = Simulate_Dataset.LoadDatasetSimulated(input_dir + '.mat')
+        dataset = Simulate_Dataset.LoadDatasetSimulated(input_dir + '/' + inputfile, 
+                                                        input_dir + '/' + cleanfile, device)
         train_loader = DataLoader(dataset, shuffle=train_hyp["shuffle"], batch_size=train_hyp["batch_size"])
         # criterion
         criterion = torch.nn.MSELoss()
@@ -57,6 +60,7 @@ if __name__ == '__main__':
         for epoch in tqdm(range(train_hyp["num_epochs"]), disable=True):
             loss_all = 0
             for idx, (y,_) in tqdm(enumerate(train_loader), disable=False):
+                y = y.float()
                 y = y.to(device)
                 y_hat, _ = net(y)
                 loss = criterion(y, y_hat)
@@ -72,11 +76,12 @@ if __name__ == '__main__':
         # MSE_error = utils.evaluate_model(dataset, net, device, criterion)
         # print(f'The MSE of the model from the true value is {MSE_error}')
 
-        yi = dataset[:]
+        
+        yi = torch.from_numpy(dataset.y).float()
         yi_hat, xi_hat = net(yi)
         h = net.get_param("H")
 
-        noisy_signal = dataset.y.clone().detach().cpu().numpy()
+        noisy_signal = dataset.y
         estimated_signal = yi_hat.clone().detach().cpu().numpy()
         estimated_events = xi_hat.clone().detach().cpu().numpy()
         estimated_kernel = h.clone().detach().cpu().numpy()
