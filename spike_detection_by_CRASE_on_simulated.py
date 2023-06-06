@@ -43,14 +43,23 @@ if __name__ == '__main__':
                    "batch_size": batch_size,
                    "device": device
                    }
-
+        
+        
         net = Model.CRsAE1D(net_hyp)
         net = net.float()
         # training parameters
         train_hyp = {"batch_size": batch_size, "num_epochs": num_epochs, "lr": lr, "shuffle": True}
-        dataset = Simulate_Dataset.LoadDatasetSimulated(input_dir + '/' + inputfile, 
+        datasettrain = Simulate_Dataset.LoadDatasetSimulated(input_dir + '/' + inputfile, 
                                                         input_dir + '/' + cleanfile, device)
-        train_loader = DataLoader(dataset, shuffle=train_hyp["shuffle"], batch_size=train_hyp["batch_size"])
+        datasettest = Simulate_Dataset.LoadDatasetSimulated(input_dir + '/' + inputfile, 
+                                                        input_dir + '/' + cleanfile, device)
+        trN = round(datasettrain.y.shape[0]/2)
+        datasettrain.y = datasettrain.y[:trN, :, :]
+        datasettrain.y_true = datasettrain.y_true[:trN, :, :]
+        datasettest.y = datasettest.y[trN:, :, :]
+        datasettest.y_true = datasettest.y_true[trN:, :, :]
+        train_loader = DataLoader(datasettrain, shuffle=train_hyp["shuffle"], batch_size=train_hyp["batch_size"])
+        
         # criterion
         criterion = torch.nn.MSELoss()
         # optimizer
@@ -76,12 +85,21 @@ if __name__ == '__main__':
         # MSE_error = utils.evaluate_model(dataset, net, device, criterion)
         # print(f'The MSE of the model from the true value is {MSE_error}')
 
+        yi_tr = torch.from_numpy(datasettrain.y).float()
+        yi_hat, xi_hat = net(yi_tr)
         
-        yi = torch.from_numpy(dataset.y).float()
+
+        
+        estimated_signal_tr = yi_hat.clone().detach().cpu().numpy()
+        estimated_events_tr = xi_hat.clone().detach().cpu().numpy()
+        
+
+
+        yi = torch.from_numpy(datasettest.y).float()
         yi_hat, xi_hat = net(yi)
         h = net.get_param("H")
 
-        noisy_signal = dataset.y
+        
         estimated_signal = yi_hat.clone().detach().cpu().numpy()
         estimated_events = xi_hat.clone().detach().cpu().numpy()
         estimated_kernel = h.clone().detach().cpu().numpy()
@@ -92,6 +110,8 @@ if __name__ == '__main__':
         # save the trained model in data folder
         torch.save(net.state_dict(), outputfile + '/model')
         spio.savemat(outputfile + ".mat",
-                     {'noisy_signal': noisy_signal, 'estimated_signal': estimated_signal,
-                      'estimated_events': estimated_events,
+                     {'yi_tr': yi_tr, 'estimated_signal_tr': estimated_signal_tr,
+                      'estimated_events_tr': estimated_events_tr,
+                         'y_test': y, 'estimated_signal_test': estimated_signal,
+                      'estimated_events_test': estimated_events,
                       'estimated_kernel': estimated_kernel})

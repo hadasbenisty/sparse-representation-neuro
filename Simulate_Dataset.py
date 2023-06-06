@@ -29,6 +29,7 @@ class LoadDatasetSimulated(Dataset):
         dataset = spio.loadmat(path2cleandata)
         self.y_true = dataset["y"].astype(np.double)
         
+        
 
     def __len__(self):
         return len(self.y)
