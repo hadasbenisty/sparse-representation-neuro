@@ -44,7 +44,7 @@ dataset = simdata.SimulatedDataset1D(data_hyp)
 x = dataset.x.clone().detach().cpu().numpy()
 y = dataset.y.clone().detach().cpu().numpy()
 data_mat = {'y': y, 'x': x}
-spio.savemat(f"Simulated_Data/CRsAE/CRsAE_SNR_{cur_snr}.mat", data_mat)
+spio.savemat(f"../sp_rep_data/Simulated_Data/CRsAE/CRsAE_SNR_{cur_snr}.mat", data_mat)
 
 
 # generate CNMF
@@ -64,4 +64,4 @@ dataset = simdata.SimulatedCNMFDataset1D(data_hyp)
 y = dataset.Y.clone().detach().cpu().numpy()
 x = dataset.truth.clone().detach().cpu().numpy()
 data_mat = {'y': y, 'x': x}
-spio.savemat(f"Simulated_Data/CNMF/CNMF_SNR_{cur_snr}.mat", data_mat)
+spio.savemat(f"../sp_rep_data/Simulated_Data/CNMF/CNMF_SNR_{cur_snr}.mat", data_mat)

@@ -1,4 +1,4 @@
-path2data = 'Simulated_Data';
+path2data = '../sp_rep_data/Simulated_Data';
 folders = dir(path2data);
 cleanSNR = 100;
 newSNR = -10:5:30;
