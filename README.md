@@ -14,7 +14,7 @@ b. Add noise to simulated data - add_noise_to_simulated_data.m
 
 c. Deconvolution by CNMF main_cnmf_simulate_data.m 
 
-d. Deconvolution by CRASE - spike_detection_by_CRASE_on_simulated.py, collect results - collect_simulated_data_CRASE_results.m
+d. Deconvolution by CRsAE - spike_detection_by_CRsAE_on_simulated.py, collect results - collect_simulated_data_CRsAE_results.m
 
 ## Ca imaging data - 2 photon imaging 
 
