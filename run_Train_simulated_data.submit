@@ -1,0 +1,9 @@
+Universe = vanilla 
+Executable = run_Train_simulated_data.sh
+Arguments = $(input_dir) $(T) $(L) $(C) $(K) $(lam) $(lr) $(batch_size) $(num_epochs) $(inputfile) $(cleanfile)
+Output = /storage/md_benisty/hadasbe/sparse_representation/$(input_dir)_$(T)_$(L)_$(C)_$(K)_$(lr)_$(batch_size)_$(num_epochs)_$(inputfile)_$(cleanfile).out 
+Error  = /storage/md_benisty/hadasbe/sparse_representation/$(input_dir)_$(T)_$(L)_$(C)_$(K)_$(lr)_$(batch_size)_$(num_epochs)_$(inputfile)_$(cleanfile).error 
+Log    = /storage/md_benisty/hadasbe/sparse_representation/$(input_dir)_$(T)_$(L)_$(C)_$(K)_$(lr)_$(batch_size)_$(num_epochs)_$(inputfile)_$(cleanfile).log 
+RequestMemory = 10GB 
+RequestCpus = 1
+Queue input_dir,T,L,C,K,lam,lr,batch_size,num_epochs,inputfile,cleanfile from arguments_for_Train_simulated_data.txt

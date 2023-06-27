@@ -250,7 +250,8 @@ g = exp2ar([tau_d, tau_r]);
         V = ht(ind);
         
         % find the best value of st
-        s = (V'*V)\(V'*yp);
+        s = pinv(V'*V)*(V'*yp);
+        %s = (V'*V)\(V'*yp);
         res = yp - V*s;
         rss = res' * res;
     end
@@ -263,7 +264,8 @@ g = exp2ar([tau_d, tau_r]);
         V = ht(ind);
         
         % find the best value of st
-        s = (V'*V)\(V'*yp);
+        s = pinv(V'*V)*(V'*yp);
+        %s = (V'*V)\(V'*yp);
         res = yp - V*s;
         rss = res' * res;
     end

@@ -23,10 +23,13 @@ class LoadDataset(Dataset):
 
 
 class LoadDatasetSimulated(Dataset):
-    def __init__(self, path, device):
-        dataset = scipy.io.loadmat(path)
-        self.y = dataset['data']
-        self.y_true = dataset['labels']
+    def __init__(self, path2noisydata, path2cleandata, device):
+        dataset = spio.loadmat(path2noisydata)
+        self.y = dataset['y_noisy'].astype(np.double)
+        dataset = spio.loadmat(path2cleandata)
+        self.y_true = dataset["y"].astype(np.double)
+        
+        
 
     def __len__(self):
         return len(self.y)

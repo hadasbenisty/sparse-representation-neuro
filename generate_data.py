@@ -1,16 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Jun  4 15:44:11 2023
+Created on Sun Jun  4 15:21:25 2023
 
 @author: hadas
-Generate clean data (SNR = 100)
 """
-
-# -*- coding: utf-8 -*-
-
-
 import torch
-
+import numpy as np
 import Simulate_Dataset as simdata
 import scipy.io as spio
 use_cuda = False
@@ -36,15 +31,16 @@ J = int(data_dur / window_dur)  # number of examples
 data_hyp ={"J": J, "N": N, "K": K, "C": C, "s": s, "x_mean": x_mean,
            "x_std": x_std, "SNR": snr, "device": device}
 
+snr_list = np.linspace(0,50,11)
 
-cur_snr = 100
-data_hyp ={"J": J, "N": N, "K": K, "C": C, "s": s, "x_mean": x_mean,
-         "x_std": x_std, "SNR": cur_snr, "device": device}
-dataset = simdata.SimulatedDataset1D(data_hyp)
-x = dataset.x.clone().detach().cpu().numpy()
-y = dataset.y.clone().detach().cpu().numpy()
-data_mat = {'y': y, 'x': x}
-spio.savemat(f"../sp_rep_data/Simulated_Data/CRsAE/CRsAE_SNR_{cur_snr}.mat", data_mat)
+for cur_snr in snr_list:
+  data_hyp ={"J": J, "N": N, "K": K, "C": C, "s": s, "x_mean": x_mean,
+           "x_std": x_std, "SNR": cur_snr, "device": device}
+  dataset = simdata.SimulatedDataset1D(data_hyp)
+  y = dataset.y_noise.clone().detach().cpu().numpy()
+  y_true = dataset.y.clone().detach().cpu().numpy()
+  data_mat = {'data': y, 'labels': y_true}
+  spio.savemat(f"custom_dataset_SNR_{cur_snr}.mat", data_mat)
 
 
 # generate CNMF
@@ -57,11 +53,11 @@ firerate = 0.3
 b = 0
 N = 2000
 
-cur_snr = 100
-data_hyp ={"g": g, "T": T, "framerate": framerate, "firerate": firerate, "b": b,
-         "N": N,"x_mean":x_mean,"SNR": cur_snr, "device": device}
-dataset = simdata.SimulatedCNMFDataset1D(data_hyp)
-y = dataset.Y.clone().detach().cpu().numpy()
-x = dataset.truth.clone().detach().cpu().numpy()
-data_mat = {'y': y, 'x': x}
-spio.savemat(f"../sp_rep_data/Simulated_Data/CNMF/CNMF_SNR_{cur_snr}.mat", data_mat)
+for cur_snr in snr_list:
+  data_hyp ={"g": g, "T": T, "framerate": framerate, "firerate": firerate, "b": b,
+           "N": N,"x_mean":x_mean,"SNR": cur_snr, "device": device}
+  dataset = simdata.SimulatedCNMFDataset1D(data_hyp)
+  y = dataset.Y.clone().detach().cpu().numpy()
+  x = dataset.truth.clone().detach().cpu().numpy()
+  data_mat = {'y': y, 'x': x}
+  spio.savemat(f"CNMF_SNR_{cur_snr}.mat", data_mat)
