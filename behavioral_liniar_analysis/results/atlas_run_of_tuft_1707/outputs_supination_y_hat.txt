@@ -1,0 +1,122 @@
+[32m[I 2023-09-10 11:35:21,564][0m A new study created in memory with name: no-name-cd00ad50-012a-48fe-af19-597583f9df9d[0m
+[32m[I 2023-09-10 11:35:27,253][0m Trial 0 finished with value: 0.016260162601626015 and parameters: {'model': 'svm_rbf', 'C': 53.249159223656875}. Best is trial 0 with value: 0.016260162601626015.[0m
+[32m[I 2023-09-10 11:35:28,247][0m Trial 1 finished with value: 0.0 and parameters: {'model': 'svm_linear', 'C': 0.04658322311715267}. Best is trial 0 with value: 0.016260162601626015.[0m
+[32m[I 2023-09-10 11:35:45,350][0m Trial 2 finished with value: 0.046511627906976744 and parameters: {'model': 'svm_poly', 'C': 52.300922322774134, 'degree': 9}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:38:42,753][0m Trial 3 finished with value: 0.0 and parameters: {'model': 'svm_linear', 'C': 52.0589583328556}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:38:42,806][0m Trial 4 finished with value: 0.0 and parameters: {'model': 'logistic', 'C': 9.578504977285707}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:43:04,082][0m Trial 5 finished with value: 0.0 and parameters: {'model': 'svm_linear', 'C': 5.848634770536758}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:43:04,132][0m Trial 6 finished with value: 0.0 and parameters: {'model': 'logistic', 'C': 0.5340083026120723}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:43:05,104][0m Trial 7 finished with value: 0.0 and parameters: {'model': 'svm_linear', 'C': 0.015258181508536422}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:43:08,871][0m Trial 8 finished with value: 0.03278688524590164 and parameters: {'model': 'svm_rbf', 'C': 9.491832148525651}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:43:16,390][0m Trial 9 finished with value: 0.015625 and parameters: {'model': 'svm_poly', 'C': 1.652221046715589, 'degree': 6}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:43:38,350][0m Trial 10 finished with value: 0.0 and parameters: {'model': 'svm_poly', 'C': 0.31768450699013756, 'degree': 14}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:43:45,179][0m Trial 11 finished with value: 0.0 and parameters: {'model': 'svm_rbf', 'C': 98.40701606345817}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:43:49,471][0m Trial 12 finished with value: 0.01639344262295082 and parameters: {'model': 'svm_rbf', 'C': 16.650096052479007}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:44:11,304][0m Trial 13 finished with value: 0.03225806451612903 and parameters: {'model': 'svm_poly', 'C': 16.267313661132572, 'degree': 10}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:44:14,675][0m Trial 14 finished with value: 0.0 and parameters: {'model': 'svm_rbf', 'C': 3.1257922385389643}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:44:34,470][0m Trial 15 finished with value: 0.015873015873015872 and parameters: {'model': 'svm_poly', 'C': 21.66297097294691, 'degree': 2}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:44:37,896][0m Trial 16 finished with value: 0.03278688524590164 and parameters: {'model': 'svm_rbf', 'C': 4.185647786746762}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:45:02,455][0m Trial 17 finished with value: 0.03252032520325203 and parameters: {'model': 'svm_poly', 'C': 25.453338248193543, 'degree': 10}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:45:02,518][0m Trial 18 finished with value: 0.0 and parameters: {'model': 'logistic', 'C': 7.828418987377679}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:45:29,813][0m Trial 19 finished with value: 0.0 and parameters: {'model': 'svm_poly', 'C': 1.8430400285497721, 'degree': 15}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:45:34,716][0m Trial 20 finished with value: 0.016260162601626015 and parameters: {'model': 'svm_rbf', 'C': 41.44986295469668}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:45:38,245][0m Trial 21 finished with value: 0.03278688524590164 and parameters: {'model': 'svm_rbf', 'C': 4.104498325719136}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:45:42,172][0m Trial 22 finished with value: 0.03278688524590164 and parameters: {'model': 'svm_rbf', 'C': 9.33227366008177}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:45:49,402][0m Trial 23 finished with value: 0.0 and parameters: {'model': 'svm_rbf', 'C': 95.19832877800265}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:45:52,763][0m Trial 24 finished with value: 0.01652892561983471 and parameters: {'model': 'svm_rbf', 'C': 3.5993238673792507}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:45:56,670][0m Trial 25 finished with value: 0.03252032520325203 and parameters: {'model': 'svm_rbf', 'C': 12.736765315369219}. Best is trial 2 with value: 0.046511627906976744.[0m
+[32m[I 2023-09-10 12:46:10,153][0m Trial 26 finished with value: 0.048387096774193554 and parameters: {'model': 'svm_poly', 'C': 30.44932597315031, 'degree': 6}. Best is trial 26 with value: 0.048387096774193554.[0m
+[32m[I 2023-09-10 12:46:22,059][0m Trial 27 finished with value: 0.03252032520325203 and parameters: {'model': 'svm_poly', 'C': 32.39414993163834, 'degree': 7}. Best is trial 26 with value: 0.048387096774193554.[0m
+[32m[I 2023-09-10 12:46:36,564][0m Trial 28 finished with value: 0.06349206349206349 and parameters: {'model': 'svm_poly', 'C': 33.83113778115977, 'degree': 4}. Best is trial 28 with value: 0.06349206349206349.[0m
+[32m[I 2023-09-10 12:46:51,070][0m Trial 29 finished with value: 0.064 and parameters: {'model': 'svm_poly', 'C': 56.907592893678995, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 12:46:59,968][0m Trial 30 finished with value: 0.06153846153846154 and parameters: {'model': 'svm_poly', 'C': 25.827635098285857, 'degree': 3}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 12:47:13,072][0m Trial 31 finished with value: 0.06153846153846154 and parameters: {'model': 'svm_poly', 'C': 28.77669828615507, 'degree': 3}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 12:47:46,904][0m Trial 32 finished with value: 0.015748031496062992 and parameters: {'model': 'svm_poly', 'C': 66.76959945849921, 'degree': 2}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 12:47:58,827][0m Trial 33 finished with value: 0.06349206349206349 and parameters: {'model': 'svm_poly', 'C': 46.38695996700143, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 12:48:11,399][0m Trial 34 finished with value: 0.064 and parameters: {'model': 'svm_poly', 'C': 58.09668274686783, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 12:48:20,572][0m Trial 35 finished with value: 0.06299212598425197 and parameters: {'model': 'svm_poly', 'C': 52.9711947105659, 'degree': 5}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 12:48:33,048][0m Trial 36 finished with value: 0.064 and parameters: {'model': 'svm_poly', 'C': 61.239695253416606, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 12:48:47,456][0m Trial 37 finished with value: 0.064 and parameters: {'model': 'svm_poly', 'C': 66.01352995151268, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 14:02:21,568][0m Trial 38 finished with value: 0.0 and parameters: {'model': 'svm_linear', 'C': 78.84479782113443}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 14:02:21,626][0m Trial 39 finished with value: 0.0 and parameters: {'model': 'logistic', 'C': 63.992689988987294}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 14:02:33,862][0m Trial 40 finished with value: 0.06299212598425197 and parameters: {'model': 'svm_poly', 'C': 58.61567807264504, 'degree': 5}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 14:02:48,415][0m Trial 41 finished with value: 0.06349206349206349 and parameters: {'model': 'svm_poly', 'C': 44.2379755928095, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 14:03:07,114][0m Trial 42 finished with value: 0.048387096774193554 and parameters: {'model': 'svm_poly', 'C': 98.92642505140684, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 14:03:16,469][0m Trial 43 finished with value: 0.06349206349206349 and parameters: {'model': 'svm_poly', 'C': 17.063460730771382, 'degree': 5}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:06:17,763][0m Trial 44 finished with value: 0.0 and parameters: {'model': 'svm_linear', 'C': 43.997725026013825}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:06:25,493][0m Trial 45 finished with value: 0.061068702290076333 and parameters: {'model': 'svm_poly', 'C': 13.080310856039972, 'degree': 3}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:06:46,769][0m Trial 46 finished with value: 0.06349206349206349 and parameters: {'model': 'svm_poly', 'C': 74.46221852193847, 'degree': 6}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:06:46,831][0m Trial 47 finished with value: 0.0 and parameters: {'model': 'logistic', 'C': 31.58449115413168}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:07:01,277][0m Trial 48 finished with value: 0.03252032520325203 and parameters: {'model': 'svm_poly', 'C': 20.438565956609146, 'degree': 7}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:07:19,461][0m Trial 49 finished with value: 0.048387096774193554 and parameters: {'model': 'svm_poly', 'C': 99.84175459739846, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:07:46,521][0m Trial 50 finished with value: 0.015873015873015872 and parameters: {'model': 'svm_poly', 'C': 38.23784481760615, 'degree': 2}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:07:59,548][0m Trial 51 finished with value: 0.064 and parameters: {'model': 'svm_poly', 'C': 52.593433870771264, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:08:15,342][0m Trial 52 finished with value: 0.064 and parameters: {'model': 'svm_poly', 'C': 59.3881882561732, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:08:32,081][0m Trial 53 finished with value: 0.06201550387596899 and parameters: {'model': 'svm_poly', 'C': 59.88063556016801, 'degree': 3}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:57:22,725][0m Trial 54 finished with value: 0.0 and parameters: {'model': 'svm_linear', 'C': 20.951587320327203}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:57:36,008][0m Trial 55 finished with value: 0.06299212598425197 and parameters: {'model': 'svm_poly', 'C': 63.887838644718926, 'degree': 5}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:57:48,726][0m Trial 56 finished with value: 0.06201550387596899 and parameters: {'model': 'svm_poly', 'C': 45.90834321428284, 'degree': 3}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:57:48,785][0m Trial 57 finished with value: 0.0 and parameters: {'model': 'logistic', 'C': 12.371176315570988}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:58:00,994][0m Trial 58 finished with value: 0.064 and parameters: {'model': 'svm_poly', 'C': 22.144187514098817, 'degree': 5}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:58:12,631][0m Trial 59 finished with value: 0.048387096774193554 and parameters: {'model': 'svm_poly', 'C': 7.055966252245928, 'degree': 7}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:58:26,418][0m Trial 60 finished with value: 0.06349206349206349 and parameters: {'model': 'svm_poly', 'C': 37.92835400271465, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:58:40,628][0m Trial 61 finished with value: 0.06299212598425197 and parameters: {'model': 'svm_poly', 'C': 79.55435321383125, 'degree': 5}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:58:52,452][0m Trial 62 finished with value: 0.064 and parameters: {'model': 'svm_poly', 'C': 24.983990428863503, 'degree': 6}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:59:07,530][0m Trial 63 finished with value: 0.06201550387596899 and parameters: {'model': 'svm_poly', 'C': 57.892900933708816, 'degree': 3}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 15:59:23,978][0m Trial 64 finished with value: 0.06299212598425197 and parameters: {'model': 'svm_poly', 'C': 78.92722323631781, 'degree': 5}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 16:00:11,816][0m Trial 65 finished with value: 0.032 and parameters: {'model': 'svm_poly', 'C': 36.240980525665535, 'degree': 12}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 16:00:23,119][0m Trial 66 finished with value: 0.048 and parameters: {'model': 'svm_poly', 'C': 22.080737487983978, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 17:02:38,500][0m Trial 67 finished with value: 0.0 and parameters: {'model': 'svm_linear', 'C': 50.3690177195719}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 17:03:01,363][0m Trial 68 finished with value: 0.015873015873015872 and parameters: {'model': 'svm_poly', 'C': 30.08107074445671, 'degree': 2}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 17:03:16,365][0m Trial 69 finished with value: 0.03225806451612903 and parameters: {'model': 'svm_poly', 'C': 17.01162916365047, 'degree': 9}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 17:03:16,411][0m Trial 70 finished with value: 0.0 and parameters: {'model': 'logistic', 'C': 77.47725513601209}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 17:03:32,965][0m Trial 71 finished with value: 0.06349206349206349 and parameters: {'model': 'svm_poly', 'C': 50.663677156794016, 'degree': 6}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 17:03:47,383][0m Trial 72 finished with value: 0.064 and parameters: {'model': 'svm_poly', 'C': 24.376310981048295, 'degree': 6}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 17:04:00,481][0m Trial 73 finished with value: 0.048 and parameters: {'model': 'svm_poly', 'C': 26.01518614643606, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 17:04:10,910][0m Trial 74 finished with value: 0.06349206349206349 and parameters: {'model': 'svm_poly', 'C': 36.80107071526255, 'degree': 5}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 17:04:22,682][0m Trial 75 finished with value: 0.06201550387596899 and parameters: {'model': 'svm_poly', 'C': 61.632582225984684, 'degree': 3}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 17:04:34,739][0m Trial 76 finished with value: 0.048 and parameters: {'model': 'svm_poly', 'C': 42.74118262721231, 'degree': 7}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 17:04:54,264][0m Trial 77 finished with value: 0.047619047619047616 and parameters: {'model': 'svm_poly', 'C': 93.53843758678757, 'degree': 8}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 17:05:06,028][0m Trial 78 finished with value: 0.06349206349206349 and parameters: {'model': 'svm_poly', 'C': 32.311166700783495, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 17:05:21,590][0m Trial 79 finished with value: 0.06349206349206349 and parameters: {'model': 'svm_poly', 'C': 53.505920900683726, 'degree': 6}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:07:35,248][0m Trial 80 finished with value: 0.0 and parameters: {'model': 'svm_linear', 'C': 72.98880236556906}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:07:44,339][0m Trial 81 finished with value: 0.064 and parameters: {'model': 'svm_poly', 'C': 27.001298253623265, 'degree': 6}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:07:52,715][0m Trial 82 finished with value: 0.064 and parameters: {'model': 'svm_poly', 'C': 23.076725670140927, 'degree': 5}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:08:05,461][0m Trial 83 finished with value: 0.06349206349206349 and parameters: {'model': 'svm_poly', 'C': 42.1592606716772, 'degree': 6}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:08:15,565][0m Trial 84 finished with value: 0.047619047619047616 and parameters: {'model': 'svm_poly', 'C': 18.450765161503867, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:08:21,362][0m Trial 85 finished with value: 0.06349206349206349 and parameters: {'model': 'svm_poly', 'C': 13.74446132683617, 'degree': 5}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:08:30,672][0m Trial 86 finished with value: 0.048 and parameters: {'model': 'svm_poly', 'C': 25.302665846071612, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:08:33,520][0m Trial 87 finished with value: 0.03278688524590164 and parameters: {'model': 'svm_rbf', 'C': 10.087018135216207}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:08:46,087][0m Trial 88 finished with value: 0.06201550387596899 and parameters: {'model': 'svm_poly', 'C': 50.917737589426636, 'degree': 3}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:08:46,128][0m Trial 89 finished with value: 0.0 and parameters: {'model': 'logistic', 'C': 34.124452281844185}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:09:01,393][0m Trial 90 finished with value: 0.04687500000000001 and parameters: {'model': 'svm_poly', 'C': 63.81575578239567, 'degree': 8}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:09:11,244][0m Trial 91 finished with value: 0.064 and parameters: {'model': 'svm_poly', 'C': 27.364025210161028, 'degree': 6}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:09:19,094][0m Trial 92 finished with value: 0.06349206349206349 and parameters: {'model': 'svm_poly', 'C': 21.42795989739648, 'degree': 5}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:09:30,134][0m Trial 93 finished with value: 0.064 and parameters: {'model': 'svm_poly', 'C': 28.104526273048577, 'degree': 6}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:09:38,855][0m Trial 94 finished with value: 0.06349206349206349 and parameters: {'model': 'svm_poly', 'C': 40.5467321059466, 'degree': 5}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:09:53,176][0m Trial 95 finished with value: 0.048387096774193554 and parameters: {'model': 'svm_poly', 'C': 86.71942242545198, 'degree': 4}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:10:05,603][0m Trial 96 finished with value: 0.047619047619047616 and parameters: {'model': 'svm_poly', 'C': 69.74156599638327, 'degree': 7}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:10:13,269][0m Trial 97 finished with value: 0.048387096774193554 and parameters: {'model': 'svm_poly', 'C': 17.075090228255906, 'degree': 6}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:10:21,972][0m Trial 98 finished with value: 0.06201550387596899 and parameters: {'model': 'svm_poly', 'C': 49.09715643847873, 'degree': 3}. Best is trial 29 with value: 0.064.[0m
+[32m[I 2023-09-10 18:10:52,217][0m Trial 99 finished with value: 0.03225806451612903 and parameters: {'model': 'svm_poly', 'C': 32.91337723894029, 'degree': 11}. Best is trial 29 with value: 0.064.[0m
+Loading pretrained network
+Creating dataset
+putting data trough network
+Creating behave dataset
+calculating F1 score on supination action
+%%%%% On y_hat %%%%%
+normalizing data
+running tuna study on metric
+Best Hyperparameters from Optuna: {'model': 'svm_poly', 'C': 56.907592893678995, 'degree': 4}
+Best Validation Set Accuracy: 0.064
+Test Set Accuracy: 0.0
+Test Set Accuracy: 0.0
+Test Set Accuracy: 0.0
+Test Set Accuracy: 0.03225806451612903
+Test Set Accuracy: 0.10526315789473684
+Test Set Accuracy: 0.0
+Test Set Accuracy: 0.0
+Test Set Accuracy: 0.0
+Test Set Accuracy: 0.0
+Test Set Accuracy: 0.05755395683453238
+[0.019507517924539825]
