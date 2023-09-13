@@ -77,7 +77,7 @@ def check_naive_classifiers(signal, label, k=10):
     for train_index, test_index in kf.split(X):
         X_train, X_test = X[train_index], X[test_index]
         y_train, y_test = y[train_index], y[test_index]
-        X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1, shuffle=False)
+        #X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1, shuffle=False)
 
         def objective(trial):
             # Define hyperparameter search space
@@ -93,15 +93,20 @@ def check_naive_classifiers(signal, label, k=10):
                 else:
                     svm_classifier = svm.SVC(C=C, kernel='poly', degree=degree)
                 svm_classifier.fit(X_train, y_train)
-                y_val_pred = svm_classifier.predict(X_val)
-                val_accuracy = f1_score(y_val, y_val_pred)
+                #y_val_pred = svm_classifier.predict(X_val)
+                #val_accuracy = f1_score(y_val, y_val_pred)
+                y_pred = svm_classifier.predict(X_train)
+                accuracy = f1_score(y_train, y_pred)
             else:
                 logistic_classifier = LogisticRegression(C=C, max_iter=1000)
                 logistic_classifier.fit(X_train, y_train)
-                y_val_pred = logistic_classifier.predict(X_val)
-                val_accuracy = f1_score(y_val, y_val_pred)
+                #y_val_pred = logistic_classifier.predict(X_val)
+                #val_accuracy = f1_score(y_val, y_val_pred)
+                y_pred = logistic_classifier.predict(X_train)
+                accuracy = f1_score(y_train, y_pred)
 
-            return val_accuracy
+            # val_accuracy = f1_score(y_val, y_val_pred)
+            return accuracy
 
         # Create an Optuna study
         study = optuna.create_study(direction='maximize')

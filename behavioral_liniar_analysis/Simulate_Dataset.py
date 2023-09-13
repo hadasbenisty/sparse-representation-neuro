@@ -38,7 +38,7 @@ class SimulatedDataset1D(Dataset):
         self.m = self.N - self.K + 1
 
         # load filters
-        self.H = utils.load_filters(self.device)
+        self.H = utils.load_h_init_harris(self.device)
 
         # generate sparse code using the already built-in function generate_x()
         if x == None:
