@@ -1,0 +1,5 @@
+simulated data
+on x: 'model': 'logistic', 'C': 83.30
+on y: 'model': 'logistic', 'C': 12.06
+on yhat: 'model': 'logistic', 'C': 19.10
+

@@ -66,7 +66,7 @@ def f1_score(label, pred):
     return f1
 
 
-def check_naive_classifiers(signal, label, k=10):
+def check_naive_classifiers(signal, label,name, k=10, params_optim = False):
     dataset_behave = create_behave_dataset_matrix(signal,label,device = device)
     X = dataset_behave.data.cpu()
     y = dataset_behave.label
@@ -77,59 +77,69 @@ def check_naive_classifiers(signal, label, k=10):
     for train_index, test_index in kf.split(X):
         X_train, X_test = X[train_index], X[test_index]
         y_train, y_test = y[train_index], y[test_index]
-        #X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1, shuffle=False)
+        if params_optim:
+            X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1, shuffle=False)
 
-        def objective(trial):
-            # Define hyperparameter search space
-            model_type = trial.suggest_categorical('model', ['svm_linear', 'svm_rbf', 'svm_poly', 'logistic'])
-            C = trial.suggest_float('C', 0.01, 100, log=True)
-            degree = trial.suggest_int('degree', 2, 15) if model_type == 'svm_poly' else None
+            def objective(trial):
+                # Define hyperparameter search space
+                model_type = trial.suggest_categorical('model', ['svm_linear', 'svm_rbf', 'svm_poly', 'logistic'])
+                C = trial.suggest_float('C', 0.01, 100, log=True)
+                degree = trial.suggest_int('degree', 2, 15) if model_type == 'svm_poly' else None
 
-            if model_type.startswith('svm'):
-                if model_type == 'svm_linear':
-                    svm_classifier = svm.SVC(C=C, kernel='linear')
-                elif model_type == 'svm_rbf':
-                    svm_classifier = svm.SVC(C=C, kernel='rbf')
+                if model_type.startswith('svm'):
+                    if model_type == 'svm_linear':
+                        svm_classifier = svm.SVC(C=C, kernel='linear')
+                    elif model_type == 'svm_rbf':
+                        svm_classifier = svm.SVC(C=C, kernel='rbf')
+                    else:
+                        svm_classifier = svm.SVC(C=C, kernel='poly', degree=degree)
+                    svm_classifier.fit(X_train, y_train)
+                    y_val_pred = svm_classifier.predict(X_val)
+                    val_accuracy = f1_score(y_val, y_val_pred)
                 else:
-                    svm_classifier = svm.SVC(C=C, kernel='poly', degree=degree)
-                svm_classifier.fit(X_train, y_train)
-                #y_val_pred = svm_classifier.predict(X_val)
-                #val_accuracy = f1_score(y_val, y_val_pred)
-                y_pred = svm_classifier.predict(X_train)
-                accuracy = f1_score(y_train, y_pred)
+                    logistic_classifier = LogisticRegression(C=C, max_iter=1000)
+                    logistic_classifier.fit(X_train, y_train)
+                    y_val_pred = logistic_classifier.predict(X_val)
+                    val_accuracy = f1_score(y_val, y_val_pred)
+
+                # val_accuracy = f1_score(y_val, y_val_pred)
+                return val_accuracy
+
+            # Create an Optuna study
+            study = optuna.create_study(direction='maximize')
+            study.optimize(objective, n_trials=100)
+
+            # Get the best trial
+            best_trial = study.best_trial
+            best_params = best_trial.params
+            best_score = best_trial.value
+            print("Best Hyperparameters from Optuna:", best_params)
+            print("Best Validation Set Accuracy:", best_score)
+
+            # Train the best model on the entire training set
+            if best_params['model'].startswith('svm'):
+                best_model = svm.SVC(C=best_params['C'], kernel=best_params['model'][4:])
             else:
-                logistic_classifier = LogisticRegression(C=C, max_iter=1000)
-                logistic_classifier.fit(X_train, y_train)
-                #y_val_pred = logistic_classifier.predict(X_val)
-                #val_accuracy = f1_score(y_val, y_val_pred)
-                y_pred = logistic_classifier.predict(X_train)
-                accuracy = f1_score(y_train, y_pred)
-
-            # val_accuracy = f1_score(y_val, y_val_pred)
-            return accuracy
-
-        # Create an Optuna study
-        study = optuna.create_study(direction='maximize')
-        study.optimize(objective, n_trials=100)
-
-        # Get the best trial
-        best_trial = study.best_trial
-        best_params = best_trial.params
-        best_score = best_trial.value
-
-        # Train the best model on the entire training set
-        if best_params['model'].startswith('svm'):
-            best_model = svm.SVC(C=best_params['C'], kernel=best_params['model'][4:])
+                best_model = LogisticRegression(C=best_params['C'], max_iter=1000)
         else:
-            best_model = LogisticRegression(C=best_params['C'], max_iter=1000)
+            if name == 'grab':
+                break
+            elif name == 'lift':
+                break
+            elif name == 'supination':
+                best_model = svm.SVC(C=0.01, kernel='poly', degree=15)
+            elif name == 'atmouth':
+                break
+            else:
+                best_model = svm.SVC(C=1, kernel='linear')
+
         best_model.fit(X_train, y_train)
 
         # Evaluate the model on the test set
         y_test_pred = best_model.predict(X_test)
         test_accuracy = f1_score(y_test, y_test_pred)
 
-        print("Best Hyperparameters from Optuna:", best_params)
-        print("Best Validation Set Accuracy:", best_score)
+
         print("Test Set Accuracy:", test_accuracy)
         test_accuracy_list.append(test_accuracy)
 
@@ -268,16 +278,16 @@ if __name__ == '__main__':
     y_accuracy = []
     y_hat_accuracy = []
 
-    metrics = ['grab']
+    metrics = ['supination']
     print("Creating behave dataset")
     dataset_behave = load_behave_data(r'./data.mat',metrics = metrics)
     for metric in metrics:
         print(f"calculating F1 score on {metric} action")
-        #print("%%%%% On y %%%%%")
-        #y_accuracy.append(check_naive_classifiers(y, dataset_behave[metric]))
-        #print(y_accuracy)
+        print("%%%%% On y %%%%%")
+        y_accuracy.append(check_naive_classifiers(y, dataset_behave[metric],name = metric))
+        print(y_accuracy)
         print("%%%%% On y_hat %%%%%")
-        y_hat_accuracy.append(check_naive_classifiers(y_hat, dataset_behave[metric]))
+        y_hat_accuracy.append(check_naive_classifiers(y_hat, dataset_behave[metric],name = metric))
         print(y_hat_accuracy)
         #print("%%%%% On x_hat %%%%%")
         #x_hat_accuracy = check_naive_classifiers(x_hat, dataset_behave[metric])
