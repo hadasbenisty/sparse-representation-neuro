@@ -92,3 +92,93 @@ class CRsAE1D(torch.nn.Module):
 
         return hx_separate
 
+
+class MultiDimBehavioralCRSAE(torch.nn.Module):
+    def __init__(self,
+                 y_channels,
+                 trial_length,
+                 trial_num,
+                 e_opt_iterations,
+                 m_opt_iterations,
+                 smoothness_param,
+                 channel_kernel_num,
+                 kernel_size,
+                 e_reg_coeff,
+                 m_reg_coeffs,
+                 device,
+                 share_kernels=False,
+                 ):
+        super().__init__()
+        self.y_channels = y_channels
+        self.trial_length = trial_length
+        self.trial_num = trial_num
+        self.e_opt_iterations = e_opt_iterations
+        self.m_opt_iterations = m_opt_iterations
+        self.smoothness_param = smoothness_param
+        self.channel_kernel_num = channel_kernel_num
+        self.kernel_size = kernel_size
+        self.e_reg_coeff = e_reg_coeff
+        self.m_reg_coeff = m_reg_coeffs
+        self.device = device
+        self.share_kernels = share_kernels
+        for c in range(self.y_channels):
+            self.register_parameter(f"H_{c}", torch.nn.Parameter(H))
+
+
+    def get_params(self):
+        return dict(
+            y_channels=self.y_channels,
+            trial_length=self.trial_length,
+            trial_num=self.trial_num,
+            e_opt_iterations=self.e_opt_iterations,
+            m_opt_iterations=self.m_opt_iterations,
+            smoothness_param=self.smoothness_param,
+            channel_kernel_num=self.channel_kernel_num,
+            kernel_size=self.kernel_size,
+            e_reg_coeff=self.e_reg_coeff,
+            m_reg_coeffs=self.m_reg_coeff,
+            device=self.device,
+            share_kernels=self.share_kernels
+        )
+
+    def encoder(self, y):
+        """
+
+        :param y: y_channels X trial_length*trial_num
+        :return:
+        sparse representation of y that minimizes reconstruction and classification loss.
+        """
+
+        enc_dim = F.conv1d(y[0, :], self.get_param("H")).shape[-1]
+        x_old = torch.zeros(y.shape[0], self.C, enc_dim, device=self.device)
+        x_tmp = torch.zeros(y.shape[0], self.C, enc_dim, device=self.device)
+        x_new = torch.zeros(y.shape[0], self.C, enc_dim, device=self.device)
+        s_old = torch.tensor(1, device=self.device).float()
+
+        # T recurrent steps
+        for t in range(self.T):
+            res = y - self.H_operator(x_tmp)
+
+            x_new = x_tmp + self.HT_operator(res) / self.L
+
+            x_new = self.relu(x_new - self.lam / self.L)
+
+            s_new = (1 + torch.sqrt(1 + 4 * s_old * s_old)) / 2
+            x_tmp = x_new + (s_old - 1) / s_new * (x_new - x_old)
+
+            x_old = x_new
+            s_old = s_new
+        return x_new
+
+    def h_operator(self, input_signal):
+        """
+        the input signal is
+        :param input_signal:
+        :return:
+        """
+        return input_signal
+
+
+
+
+
