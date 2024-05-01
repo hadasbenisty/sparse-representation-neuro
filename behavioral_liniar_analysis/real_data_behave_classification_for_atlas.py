@@ -22,11 +22,11 @@ print(f"using {device} as device")
 
 
 class load_dataset(Dataset):
-    def __init__(self, path,device):
+    def __init__(self, path,device,cutoff = 0):
         data = scipy.io.loadmat(path)['imagingData']['samples'][0,0]
-        self.y = torch.zeros((len(data), data[0].shape[0]*data[0].shape[1]), device=device)
+        self.y = torch.zeros((len(data), (data[0].shape[0]-cutoff)*(data[0].shape[1])), device=device)
         for i in range(len(data)):
-          self.y[i] = torch.tensor(data[i].flatten())
+          self.y[i] = torch.tensor(data[i][cutoff:,:].flatten())
         self.y = torch.unsqueeze(self.y, 1)
 
     def __len__(self):
@@ -36,7 +36,7 @@ class load_dataset(Dataset):
         return self.y[idx]
 
 
-def load_behave_data(path, metrics = ['lift','grab','atmouth','tone','supination']):
+def load_behave_data(path, metrics = ['lift','grab','atmouth','supination'],cutoff = 0):
     data = scipy.io.loadmat(path)['BehaveData']
     field_names = data.dtype.names
     behavior_dict = {}
@@ -44,7 +44,7 @@ def load_behave_data(path, metrics = ['lift','grab','atmouth','tone','supination
       behave = None
       for field in field_names:
         if metric in field:
-          events = np.concatenate(scipy.io.loadmat(path)['BehaveData'][field][0][0][0][0][0])
+          events = np.concatenate(scipy.io.loadmat(path)['BehaveData'][field][0][0][0][0][0][:,cutoff:])
           if behave is None:
             behave = np.zeros((len(events),))
           behave += events
@@ -61,8 +61,10 @@ def f1_score(label, pred):
 
     precision = true_positives / predicted_positives if predicted_positives > 0 else 0.0
     recall = true_positives / all_positives if all_positives > 0 else 0.0
-
+    print(f"precision = {precision}")
+    print(f"recall = {recall}")
     f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0.0
+    print(f"F1 score = {f1}")
     return f1
 
 
@@ -83,7 +85,7 @@ def check_naive_classifiers(signal, label,name, k=10, params_optim = False):
             def objective(trial):
                 # Define hyperparameter search space
                 model_type = trial.suggest_categorical('model', ['svm_linear', 'svm_rbf', 'svm_poly', 'logistic'])
-                C = trial.suggest_float('C', 0.01, 100, log=True)
+                C = trial.suggest_float('C', 0.1, 20, log=True)
                 degree = trial.suggest_int('degree', 2, 15) if model_type == 'svm_poly' else None
 
                 if model_type.startswith('svm'):
@@ -107,7 +109,7 @@ def check_naive_classifiers(signal, label,name, k=10, params_optim = False):
 
             # Create an Optuna study
             study = optuna.create_study(direction='maximize')
-            study.optimize(objective, n_trials=100)
+            study.optimize(objective, n_trials=30)
 
             # Get the best trial
             best_trial = study.best_trial
@@ -267,7 +269,7 @@ if __name__ == '__main__':
 
     print("Creating dataset")
     with torch.no_grad():
-        dataset = load_dataset(r'./data.mat',device = device)
+        dataset = load_dataset(r'./data.mat',device=device, cutoff=74)
         y = dataset[:]
         print("putting data trough network")
         y_hat, x_hat = net(y)
@@ -278,16 +280,16 @@ if __name__ == '__main__':
     y_accuracy = []
     y_hat_accuracy = []
 
-    metrics = ['supination']
+    metrics = ['atmouth']
     print("Creating behave dataset")
-    dataset_behave = load_behave_data(r'./data.mat',metrics = metrics)
+    dataset_behave = load_behave_data(r'./data.mat',metrics=metrics,cutoff=74)
     for metric in metrics:
         print(f"calculating F1 score on {metric} action")
         print("%%%%% On y %%%%%")
-        y_accuracy.append(check_naive_classifiers(y, dataset_behave[metric],name = metric))
+        y_accuracy.append(check_naive_classifiers(y, dataset_behave[metric], name=metric, params_optim=True))
         print(y_accuracy)
-        print("%%%%% On y_hat %%%%%")
-        y_hat_accuracy.append(check_naive_classifiers(y_hat, dataset_behave[metric],name = metric))
-        print(y_hat_accuracy)
+        #print("%%%%% On y_hat %%%%%")
+        #y_hat_accuracy.append(check_naive_classifiers(y_hat, dataset_behave[metric],name = metric))
+        #print(y_hat_accuracy)
         #print("%%%%% On x_hat %%%%%")
         #x_hat_accuracy = check_naive_classifiers(x_hat, dataset_behave[metric])
