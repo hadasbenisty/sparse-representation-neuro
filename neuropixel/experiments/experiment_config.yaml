@@ -1,0 +1,27 @@
+model_params:
+  num_unfolding_steps: 800
+  num_filters: 15
+  filter_length: 20
+  lambda_reg: 5
+  use_twosided_relu: true
+
+train_params:
+  num_epochs: 20
+  lr: 0.005
+  patience: 4
+  dict_opt_steps: 40
+  batch_size: 8
+  num_workers: 2
+  prefetch_factor: 2
+  update_L_frequency: 10
+
+dataset_params:
+  data_dir: C:/Users/yoav.h/research/crsae_on_neuropixel/data/data_files/200k_samp/by_channel
+  window_length: 200000
+  channels: [160,161]
+  scale_by: 0.01
+  split_length: 40000
+  overlap: 100
+
+experiments_dir: "C:/Users/yoav.h/research/crsae_on_neuropixel/experiments"
+experiment_name: "refactor"
